@@ -1,23 +1,24 @@
 import React, {useState} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, TextInput, Button} from 'react-native';
+import {useDispatch} from 'react-redux';
 
-const HomeScreen = ({navigation}) => {
-  const [number, setNumber] = useState(0);
-
+const HomeScreen = () => {
+  const [text, setText] = useState('');
+  const dispatch = useDispatch();
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Home!</Text>
-      <Text>{number}</Text>
-      <Button
-        title="increase"
-        onPress={() => {
-          setNumber(number + 1);
+      <TextInput
+        style={{borderWidth: 2, borderColor: 'black', minWidth: 100}}
+        onChangeText={val => {
+          setText(val);
         }}
+        value={text}
       />
       <Button
-        title="go to settings"
+        title="ADD NAME"
         onPress={() => {
-          navigation.navigate('Settings', {number});
+          dispatch({type: 'ADD_NAME', payload: {name: text}});
         }}
       />
     </View>

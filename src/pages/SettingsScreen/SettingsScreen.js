@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
+import {useSelector} from 'react-redux';
 
-const SettingsScreen = ({route}) => {
-  const {number} = route.params;
+const SettingsScreen = () => {
+  const list = useSelector(state => state.nameList);
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Settings!</Text>
-      <Text>{number}</Text>
+      <FlatList data={list} renderItem={({item}) => <Text>{item}</Text>} />
     </View>
   );
 };
