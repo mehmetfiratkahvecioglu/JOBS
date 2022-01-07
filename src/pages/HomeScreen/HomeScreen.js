@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 const HomeScreen = () => {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={styles.container}>
       <Text>Home!</Text>
-      <TextInput
-        style={{borderWidth: 2, borderColor: 'black', minWidth: 100}}
-        onChangeText={val => {
-          setText(val);
-        }}
-        value={text}
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          onChangeText={val => {
+            setText(val);
+          }}
+          value={text}
+        />
+      </View>
       <Button
         title="ADD NAME"
         onPress={() => {
@@ -24,5 +25,20 @@ const HomeScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    margin: 10,
+  },
+  inputContainer: {
+    borderRadius: 20,
+    borderColor: 'blue',
+    borderWidth: 2,
+    marginBottom: 5,
+  },
+});
 
 export default HomeScreen;
