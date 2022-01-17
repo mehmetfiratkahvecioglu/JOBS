@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
-
+import styles from './Home.style';
 const HomeScreen = () => {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
-      <Text>Home!</Text>
+      <Text>JOBS</Text>
       <View style={styles.inputContainer}>
         <TextInput
           onChangeText={val => {
@@ -25,20 +25,5 @@ const HomeScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    margin: 10,
-  },
-  inputContainer: {
-    borderRadius: 20,
-    borderColor: 'blue',
-    borderWidth: 2,
-    marginBottom: 5,
-  },
-});
 
 export default HomeScreen;
