@@ -1,27 +1,33 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, FlatList} from 'react-native';
 import {useDispatch} from 'react-redux';
 import styles from './Home.style';
+import HTMLView from 'react-native-htmlview';
+import axios from 'axios';
+import JobListCard from '../../components/JobListCard';
 const HomeScreen = () => {
-  const [text, setText] = useState('');
-  const dispatch = useDispatch();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const fetchData = () => {
+    axios.get('https://www.themuse.com/api/public/jobs?page=1').then(res => {
+      console.log(res);
+      setData(res.data);
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const renderItem = ({item}) => {
+    return <JobListCard job={item} />;
+  };
+
   return (
     <View style={styles.container}>
-      <Text>JOBS</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          onChangeText={val => {
-            setText(val);
-          }}
-          value={text}
-        />
-      </View>
-      <Button
-        title="ADD NAME"
-        onPress={() => {
-          dispatch({type: 'ADD_NAME', payload: {name: text}});
-        }}
-      />
+      {loading && <Text>Loading </Text>}
+      <FlatList data={data.results} renderItem={renderItem} />
     </View>
   );
 };
