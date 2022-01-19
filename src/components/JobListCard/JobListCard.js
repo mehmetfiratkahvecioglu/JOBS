@@ -2,9 +2,9 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './JobListCard.style';
 
-const JobListCard = ({job}) => {
+const JobListCard = ({job, handleNavigation}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handleNavigation}>
       <View>
         <Text numberOfLines={1} style={styles.jobName}>
           {job.name}

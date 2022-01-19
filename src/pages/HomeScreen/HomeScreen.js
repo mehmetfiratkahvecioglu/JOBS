@@ -5,7 +5,7 @@ import styles from './Home.style';
 import HTMLView from 'react-native-htmlview';
 import axios from 'axios';
 import JobListCard from '../../components/JobListCard';
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchData = () => {
@@ -20,8 +20,18 @@ const HomeScreen = () => {
     fetchData();
   }, []);
 
+  const handleNavigation = jobId => {
+    navigation.navigate('DetailScreen', {id: jobId});
+  };
   const renderItem = ({item}) => {
-    return <JobListCard job={item} />;
+    return (
+      <JobListCard
+        job={item}
+        handleNavigation={() => {
+          handleNavigation(item.id);
+        }}
+      />
+    );
   };
 
   return (
