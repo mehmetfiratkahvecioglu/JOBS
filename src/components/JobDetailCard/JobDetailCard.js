@@ -28,7 +28,7 @@ const JobDetailCard = ({job, handleAddFavorite}) => {
       </View>
       <View style={styles.buttonContainer}>
         <Button text={'Submit'} />
-        <Button text={'Favorite Job'} handleAddFavorite={handleAddFavorite} />
+        <Button text={'Favorite Job'} onPress={handleAddFavorite} />
       </View>
     </View>
   );

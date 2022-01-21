@@ -8,6 +8,14 @@ const reducers = (state, action) => {
           action.payload.newFavoriteJob,
         ],
       };
+
+    case 'REMOVE_FAVORITE_JOB':
+      const {favoriteJobList} = {...state};
+      const {removeJobId} = action.payload;
+      const newFavoriteJobList = favoriteJobList.filter(
+        value => value.id !== removeJobId,
+      );
+      return {...state, favoriteJobList: newFavoriteJobList};
     default:
       return state;
   }
