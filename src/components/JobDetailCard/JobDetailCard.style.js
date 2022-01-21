@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
   jobDetail: {fontSize: 18, fontWeight: 'bold', alignSelf: 'center'},
   buttonContainer: {
     flexDirection: 'row',
-    backgroundColor: 'black',
-    justifyContent: 'center',
+    backgroundColor: '#eeeeee',
+    justifyContent: 'space-evenly',
   },
 });
 

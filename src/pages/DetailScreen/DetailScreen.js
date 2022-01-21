@@ -3,10 +3,16 @@ import {View, Text, FlatList} from 'react-native';
 import styles from './DetailScreen.style';
 import axios from 'axios';
 import JobDetailCard from '../../components/JobDetailCard';
+import {useDispatch} from 'react-redux';
 const DetailScreen = ({route}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const {id} = route.params;
+  const dispatch = useDispatch();
+
+  /*const handleAddFavorite = () => {
+    dispatch({type: 'ADD_FAVORITE_JOB', payload: {newFavoriteJob: item}});
+  };*/
 
   const fetchData = () => {
     axios.get('https://www.themuse.com/api/public/jobs/' + id).then(res => {
@@ -16,7 +22,14 @@ const DetailScreen = ({route}) => {
     });
   };
 
-  const renderItem = ({item}) => <JobDetailCard job={item} />;
+  const renderItem = ({item}) => (
+    <JobDetailCard
+      job={item}
+      handleAddFavorite={() => {
+        dispatch({type: 'ADD_FAVORITE_JOB', payload: {newFavoriteJob: item}});
+      }}
+    />
+  );
 
   useEffect(() => {
     fetchData();

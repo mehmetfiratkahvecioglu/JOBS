@@ -10,7 +10,6 @@ const HomeScreen = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   const fetchData = () => {
     axios.get('https://www.themuse.com/api/public/jobs?page=1').then(res => {
-      console.log(res);
       setData(res.data);
       setLoading(false);
     });

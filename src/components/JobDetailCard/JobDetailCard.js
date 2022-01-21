@@ -4,7 +4,7 @@ import HTMLView from 'react-native-htmlview';
 import styles from './JobDetailCard.style';
 import Button from '../Button';
 
-const JobDetailCard = ({job}) => {
+const JobDetailCard = ({job, handleAddFavorite}) => {
   return (
     <View>
       <View style={styles.titleContainer}>
@@ -28,7 +28,7 @@ const JobDetailCard = ({job}) => {
       </View>
       <View style={styles.buttonContainer}>
         <Button text={'Submit'} />
-        <Button text={'Favorite Job'} />
+        <Button text={'Favorite Job'} handleAddFavorite={handleAddFavorite} />
       </View>
     </View>
   );
