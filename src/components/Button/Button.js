@@ -1,9 +1,12 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import styles from './Button.style';
-const Button = ({text, onPress}) => {
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const Button = ({text, onPress, iconName}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Icon name={iconName} size={20} color={'white'} />
       <Text style={styles.title}>{text}</Text>
     </TouchableOpacity>
   );

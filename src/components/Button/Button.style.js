@@ -9,8 +9,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
+    flexDirection: 'row',
   },
-  title: {fontWeight: 'bold', color: 'white'},
+  title: {fontWeight: 'bold', color: 'white', marginLeft: 8},
 });
 
 export default styles;

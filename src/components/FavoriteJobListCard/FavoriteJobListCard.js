@@ -20,7 +20,7 @@ const FavoriteJobListCard = ({job, handleRemoveItem}) => {
           : 'Unknown Level'}
       </Text>
       <View style={styles.buttonContainer}>
-        <Button text="Remove" onPress={handleRemoveItem} />
+        <Button text="Remove" onPress={handleRemoveItem} iconName={'trash-o'} />
       </View>
     </View>
   );

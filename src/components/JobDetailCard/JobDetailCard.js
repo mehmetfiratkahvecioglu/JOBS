@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import styles from './JobDetailCard.style';
 import Button from '../Button';
@@ -27,8 +27,21 @@ const JobDetailCard = ({job, handleAddFavorite}) => {
         <HTMLView value={job.contents} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button text={'Submit'} />
-        <Button text={'Favorite Job'} onPress={handleAddFavorite} />
+        <Button
+          text={'Submit'}
+          iconName={'check-square-o'}
+          onPress={() => {
+            Alert.alert(
+              'Congratulations',
+              'Your application has been received',
+            );
+          }}
+        />
+        <Button
+          text={'Favorite Job'}
+          iconName={'heart'}
+          onPress={handleAddFavorite}
+        />
       </View>
     </View>
   );
