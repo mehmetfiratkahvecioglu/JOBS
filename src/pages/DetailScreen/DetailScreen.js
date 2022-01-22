@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList, ActivityIndicator} from 'react-native';
 import styles from './DetailScreen.style';
 import axios from 'axios';
 import JobDetailCard from '../../components/JobDetailCard';
@@ -35,7 +35,11 @@ const DetailScreen = ({route}) => {
     fetchData();
   }, []);
   if (loading) {
-    return <Text>LOADING</Text>;
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator color="#ff4d4d" size={50} />
+      </View>
+    );
   }
   return (
     <View style={styles.container}>

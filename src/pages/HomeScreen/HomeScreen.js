@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {View, FlatList, ActivityIndicator} from 'react-native';
 import styles from './Home.style';
-import HTMLView from 'react-native-htmlview';
 import axios from 'axios';
 import JobListCard from '../../components/JobListCard';
 const HomeScreen = ({navigation}) => {
@@ -19,23 +17,28 @@ const HomeScreen = ({navigation}) => {
     fetchData();
   }, []);
 
-  const handleNavigation = jobId => {
-    navigation.navigate('DetailScreen', {id: jobId});
+  const handleNavigation = (jobId, jobName) => {
+    navigation.navigate('DetailScreen', {id: jobId, name: jobName});
   };
   const renderItem = ({item}) => {
     return (
       <JobListCard
         job={item}
         handleNavigation={() => {
-          handleNavigation(item.id);
+          handleNavigation(item.id, item.name);
         }}
       />
     );
   };
-
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator color="#ff4d4d" size={50} />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
-      {loading && <Text>Loading </Text>}
       <FlatList data={data.results} renderItem={renderItem} />
     </View>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import FavoriteJobListCard from '../../components/FavoriteJobListCard';
 import styles from './SettingsScreen.style';
@@ -20,7 +20,6 @@ const SettingsScreen = () => {
   );
   return (
     <View style={styles.container}>
-      <Text>Settings! </Text>
       <FlatList data={list} renderItem={renderItem} />
     </View>
   );
